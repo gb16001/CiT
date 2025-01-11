@@ -1,0 +1,11 @@
+# Usage: pip install -r requirements.txt
+
+python-box
+opencv-python
+scikit-learn
+Pillow
+numpy
+tensorboard
+torch-tb-profiler
+torchinfo
+dynaconf

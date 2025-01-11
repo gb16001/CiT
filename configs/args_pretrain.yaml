@@ -1,0 +1,48 @@
+
+img_size: [32, 256] # y,x
+cuda: True
+
+# path
+CBLtrain: CBLdata/CBLPRD-330k_v1/train.txt #dataset/CCPDanno_train.csv
+CBLval: CBLdata/CBLPRD-330k_v1/val.txt
+tb_log_dir: runs/LPR/Nov21_09-09-B_resnet50_H_tr_CTC
+# tensorboard --logdir runs/LPR --port 6006
+pretrained_model: null #weights/pre/model_s10750_err019.pth #'weights/CBL-acc.822.pth' ''
+weight_save_folder: './weights/lpr/tmp'
+
+# tensor board
+tboard: true # open or not
+step_p_tbWrite: 100
+tb_net_graph: True # tboard write net graph
+tb_weight_Histogram: True
+
+# train opt.
+init_step: 0
+add_epochs: 10
+step_p_val: 1000
+step_p_save: 1000
+
+# model
+model_name: B_resnet50_H_tr_CTC
+lpr_max_len: 8 #license plate number max length.
+
+# learn paramaters
+
+# data loader
+train_batch_size: 256
+test_batch_size: 256
+num_workers: 12
+
+# optim adam 
+optim: Adam 
+learning_rate: 0.001
+lr_schedule: [8, 11, 12, 14, 16] # for adam
+adam_betas: [0.9,0.99]
+weight_decay: 0 #2e-5
+grad_clip: null #1 # grad threshold
+
+# optim RMS
+# optim: RMS 
+# lr_schedule: [4, 8, 12, 14, 16] # for RMS
+# RMS_momentum: 0.9
+# RMS_alpha: 0.9

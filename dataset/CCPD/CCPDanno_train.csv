@@ -1,0 +1,2 @@
+filename,CCPD_path,area_ratio,license_plate,brightness,blurriness,vertex_1_x,vertex_1_y,vertex_2_x,vertex_2_y,vertex_3_x,vertex_3_y,vertex_4_x,vertex_4_y,bounding_box_1_x,bounding_box_1_y,bounding_box_2_x,bounding_box_2_y,tilt_degree_1,tilt_degree_2
+018128514.jpg,CCPD2019/ccpd_base,0.189,皖AJ0S21,147,23.0,348,554,103,536,89,451,334,469,107,462,332,555,93,77

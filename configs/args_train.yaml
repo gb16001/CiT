@@ -1,0 +1,62 @@
+
+img_size: [290, 720]
+cuda: True
+
+# path
+CCPD_train: dataset/CCPD/CCPDanno_train.csv
+CCPD_val: dataset/CCPD/CCPDanno_val.csv
+CCPD_test: dataset/CCPD/CCPDanno_test.csv
+tb_log_dir: runs/benchMark04-gridSearch/del-test
+# tensorboard --logdir runs/benchMark04-gridSearch --port 6006
+# tensorboard --logdir runs/benchMark04-fullTrain --port 6006
+pretrained_model: null 
+
+weight_save_folder: ./weights/tmp
+backbone_pth: null
+# weights/lpr/B_resnet50_H_tr_CTC_s10000_err.0025.pth
+# weights/lpr/B_resnet18_H_tr_CTC_s10000_err.0035.pth
+# weights/lpr/B_effiNetb0_H_tr_CTC_s6000.err0046.pth
+
+# train opt.
+init_step: 0
+add_epochs: 5
+step_p_val: 9662 #1e4  once p epoch= 309190/batch size
+step_p_save: 9662 #2e4
+
+# tensor board
+tboard: true # open or not
+step_p_tbWrite: 500
+tb_net_graph: false # tboard write net graph
+tb_weight_Histogram: true
+
+
+# model
+model_name: base_Bres18_stnS16g270_H_tr_at
+lpr_max_len: 8 # license plate number max length.
+
+
+## learn paramaters
+
+# data loader
+train_batch_size: 32 
+test_batch_size: 32
+num_workers: 10
+
+# loss
+lossFunc: CEloss # FocalLoss or CEloss
+
+# optim adam 
+optim: Adam 
+learning_rate: 1e-3
+backbone_lr: 1e-4
+adam_betas: [0.9,0.99]  #[0.9,0.99]
+weight_decay: 0 #2e-5
+grad_clip: null # grad threshold
+
+# amp setting
+grad_scale: false
+autocast: True
+
+# lr schedule setting
+lr_schedule_step_size: 20 # for adam
+gamma: 0.1

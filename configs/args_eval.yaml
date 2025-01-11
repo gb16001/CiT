@@ -1,0 +1,24 @@
+
+img_size: [290, 720]
+cuda: True
+
+CCPD_val: dataset/CCPD/CCPDanno_test.csv
+# dataset/CTPFSD/CTPFSD-val_set.csv
+# dataset/CLPD/CLPD-val_set.csv
+pretrained_model: weights/release/res18-2/res18-2_s59192-err.473-e39.pth
+# weights/release/res50/res50_s161050_err0.0431_e50.pth
+# weights/release/noSTN/noSTN_s241500-e50-err.0372.pth
+# weights/release/2STN/2STN_s35032-e29-err.0327.pth
+# weights/release/res18-2/res18-2_s59192-err.473-e39.pth
+
+# data loader
+
+test_batch_size: 64
+num_workers: 12
+
+model_name: base_Bres18_stnS16g270_H_tr_at
+# res50_Bres50_stnS16_H_tr_at
+# noSTN_ImgD4_B_res18_H_tr_at
+# STN8_16_Bres18STNs8s16g66_H_tr_at
+# base_Bres18_stnS16g270_H_tr_at
+lpr_max_len: 8 
