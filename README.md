@@ -27,24 +27,14 @@ filename,CCPD_path,license_plate is needed columns.
 run eval.py with `configs/args_eval.yaml`
 
 ## Released weight and performance
-### CCPD
+### CCPD2018
 CiT-res18, res50, noSTN, 2STN is released, in which 2STN performed best.
-| Method | overAll | base | blur | CHLG  | db   | fn   | rotate | tilt  | WX    | green |
-|---------------------|---------|------|------|-------|------|------|--------|-------|-------|-------|
-| CiT-res18 (3.1M,12GFLOPs) | 4.6     | 0.5  | 7.0  | 13.1  | 7.9  | 8.6  | 3.1    | 10.3  | 2.5   | 10.6  |
-| CiT-res50 (8.9M,28.2G)   | 4.2     | 0.6  | 6.9  | 12.1  | 8.8  | 7.1  | **1.3**| 9.1   | 1.9   | 10.6  |
-| CiT-noSTN (3.1M,12G)     | 3.7     | 0.3  | 5.8  | 10.5  | 6.6  | 7.5  | 2.1    | 7.9   | 1.9   | 9.2   |
-| CiT-2STN (3.2M,9.2G)     | 3.2     | **0.3**| **4.3**| **9.6**| 6.4  | 6.1  | 1.7    | 6.6   | 1.5   | **8.3** |
-
-### CLPD
-|CiT-res18 | 31.0 |
-|-|-|
-|CiT-res18 (0 shot) | 60.3|
-
-### CTPFSD
-|CiT-res50-noSTN+augment | 39.1 |
-|-|-|
-|CiT-res50-noSTN (0 Shot) | 74.0 |
+| Method                   | Avg | Base | Cha.  | DB   | FN   | Rotate | Tilt | Wea. |
+|--------------------------|-----|------|-------|------|------|--------|------|------|
+| CiT-res18 (3.1M,12GFLOPs) | 2.6 | 0.9  | 15.0  | 2.2  | 6.7  | 1.0    | 1.6  | 2.9  |
+| CiT-res50 (8.9M,28.2G)    | 2.7 | 0.9  | 14.6  | 2.0  | 7.7  | 1.1    | 1.6  | 3.0  |
+| CiT-noSTN (3.1M,12G)      | 2.6 | 0.9  | 15.0  | 2.2  | 6.1  | 1.1    | 1.9  | 3.0  |
+| CiT-2STN (3,2M,9.2G)      | 2.4 | 0.8  | 14.0  | 2.0  | 5.5  | 1.0    | 1.7  | 2.6  |
 
 ## Citation
 ```
