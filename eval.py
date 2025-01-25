@@ -64,7 +64,7 @@ class Evaluator_CE(Trainer_CE):
         return correct_char_count,total_char_count,correct_lp_count,total_lp_count
     def _eval_step_forward(self, img, LP_labels):
         '''
-         1 by 1 infer here
+         1 by 1 infer here, this sould be refined with gready search tgt gen func
         '''
         img, LP_labels=img.to(self.device),LP_labels.to(self.device)
         bz=img.shape[0]
