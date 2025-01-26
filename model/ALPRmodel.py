@@ -896,3 +896,21 @@ class ImgD4_B_effb0_stnS16g270_H_tr_at(nn.Module):
         logits=self.head.forward(fm,tgt_one_hot)
         return logits #B,C,N
     pass
+class STN8_16_Bres18STNs8s16g66Adap_H_tr_at(nn.Module):
+    def __init__(self, classNum_char:int=75) -> None:
+        super().__init__()
+        self.classNum_char=classNum_char
+        self.bone = Backbone.resnet18_LP32x256_FM2x16(classNum_char)
+        self.neck=Neck.STN_s8s16g66_Adaptive()
+        self.head=Head.TR_seqQ_atAttn(classNum_char,66,8,nhead=15,nEnLayers=2,nDelayers=2)
+        return
+    def forward(self,img,tgt):
+        fm = self.bone[0][0:6](img)  # s8 fm[128,37,90]
+        fm=self.neck[0](fm) #STN
+        fm = self.bone[0][6](fm) #s16
+        fm = self.bone[1](fm)
+        fm = self.neck[1:](fm) #STN&flatten
+        tgt_one_hot = F.one_hot(tgt, self.classNum_char).float()  # B,N,C
+        logits = self.head.forward(fm, tgt_one_hot)
+        return logits  # B,C,N
+    pass

@@ -642,6 +642,48 @@ class Neck:
         stnS16=STN(L_net,L_channels,outSize)
         return nn.Sequential(stnS8,stnS16,Neck.flate())
     @staticmethod
+    def STN_s8s16g66_Adaptive(char_classNum:int=75,stn_detach:bool=True):
+        L_net=nn.Sequential(#s8 fm[128,37,90]
+            nn.AdaptiveAvgPool2d((37,90)),
+            nn.Conv2d(128,64,3,2,1), #s16
+            nn.BatchNorm2d(64),
+            nn.ReLU(),
+            nn.Conv2d(64,32,3,2,1), #s32
+            nn.BatchNorm2d(32),
+            nn.ReLU(),
+            nn.Conv2d(32,16,3,2,1), #s64
+            nn.BatchNorm2d(16),
+            nn.ReLU(),
+            nn.Conv2d(16,8,3,2,1), #s128
+            nn.BatchNorm2d(8),
+            nn.ReLU(),
+
+            nn.Conv2d(8, 2, kernel_size=1), # channel down=>fm[2,2,9]
+            nn.BatchNorm2d(2),
+            nn.ReLU(True),
+            nn.Flatten(),
+        )
+        L_channels=36
+        outSize=[12,90]
+        theta_0=STN.gen_Theta_0(inSize=(37,90),p1=(12,0),p2=(24,90))
+        stnS8 = STN(L_net,L_channels,outSize,detach=stn_detach,theta_0=theta_0)
+
+        L_net=nn.Sequential(#[6,45] =s3=> [2,15]
+            nn.Conv2d(char_classNum,32,5,3,2),
+            nn.BatchNorm2d(32),
+            nn.ReLU(True),
+
+            nn.Conv2d(32,2,1),
+            nn.BatchNorm2d(2),
+            nn.ReLU(True),
+            nn.Flatten(),
+        )
+        L_channels=60
+        outSize=[3,22]
+        stnS16=STN(L_net,L_channels,outSize)
+        return nn.Sequential(stnS8,stnS16,Neck.flate())
+
+    @staticmethod
     def STN_s8s16g66(char_classNum:int=75,stn_detach:bool=True):
         L_net=nn.Sequential(#s8 fm[128,37,90]
             nn.Conv2d(128,64,3,2,1), #s16
